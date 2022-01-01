@@ -19,14 +19,14 @@
                         <input class="m-0 form-control" type="number">
                     </div>
                     <div class="d-flex justify-content-between">
-                        <button class="m-2 btn btn-secondary botones">/</button>
-                        <button class="m-2 btn btn-secondary botones">x</button>
-                        <button class="m-2 btn btn-secondary botones">-</button>
-                        <button class="m-2 btn btn-secondary botones">+</button>
-                        <button class="m-2 btn btn-primary boton2">=</button>
+                        <button class="m-2 btn btn-secondary botones" onclick="dividir()">/</button>
+                        <button class="m-2 btn btn-secondary botones" onclick="multiplicar()">x</button>
+                        <button class="m-2 btn btn-secondary botones" onclick="restar()">-</button>
+                        <button class="m-2 btn btn-secondary botones" onclick="sumar()">+</button>
+                        <button class="m-2 btn btn-primary boton2" onclick="igual()">=</button>
                     </div>
                     <h5 class="lead">Resultado:</h5>
-                    <div class="m-0 form-control">0</div>
+                    <div class="m-0 form-control" id="result">0</div>
                 </section>
             </article>
         </section>
