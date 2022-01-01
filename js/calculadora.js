@@ -22,49 +22,48 @@
 let ventanaRes = document.getElementById("result");
 let valor1 = 0;
 let indicador = "";
-let screen = document.getElementsByTagName("input");
+let screen = document.getElementsByTagName("input")[0];
 
 function dividir() {
     valor1 = parseInt(document.getElementsByTagName("input")[0].value);
     indicador = "dividir";
-    screen[0].value = "";
+    screen.value = "";
 }
 
 function sumar() {
     valor1 = parseInt(document.getElementsByTagName("input")[0].value);
     indicador = "sumar";
-    screen[0].value = "";
+    screen.value = "";
 }
 
 function restar() {
     valor1 = parseInt(document.getElementsByTagName("input")[0].value);
     indicador = "restar";
-    screen[0].value = "";
+    screen.value = "";
 }
 
 function multiplicar() {
     valor1 = parseInt(document.getElementsByTagName("input")[0].value);
     indicador = "multiplicar";
-    screen[0].value = "";
+    screen.value = "";
 }
 
 function igual() {
     let valor2 = parseInt(document.getElementsByTagName("input")[0].value);
     if (indicador == "dividir") {
         let resultado = (valor1/valor2);
-        ventanaRes.innerText = resultado;
+        screen.value = resultado;
     }
     if (indicador == "sumar") {
         let resultado = (valor1+valor2);
-        ventanaRes.innerText = resultado;
+        screen.value = resultado;
     }
     if (indicador == "restar") {
         let resultado = (valor1-valor2);
-        ventanaRes.innerText = resultado;
+        screen.value = resultado;
     }
     if (indicador == "multiplicar") {
         let resultado = (valor1*valor2);
-        ventanaRes.innerText = resultado;
+        screen.value = resultado;
     }
-    screen[0].value = "";
 }
