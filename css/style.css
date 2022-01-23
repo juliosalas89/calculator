@@ -9,3 +9,26 @@
 .boton_igual {
     height: 100px;
 }
+
+.ancho_total {
+    width: 300px;
+}
+
+.ancho_3botones {
+  width: 225px;
+}
+
+.ancho_1boton {
+    width: 75px;
+    height: 112px;
+}
+
+.botones_chicos {
+    width: 75px;
+    height: 56px;
+}
+
+.boton_grande {
+    width: 75px;
+    height: 112px;
+}
