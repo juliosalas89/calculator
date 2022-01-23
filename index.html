@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calculadora</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -19,45 +19,57 @@
                 </form>
                 <div>
                     <div class="d-flex">
-                        <button class="botones_chicos btn btn-secondary botones" onclick="despejar()">C</button>
-                        <button class="botones_chicos btn btn-secondary botones" onclick="operacion(1)">/</button>
-                        <button class="botones_chicos btn btn-secondary botones" onclick="operacion(2)">x</button>
-                        <button class="botones_chicos btn btn-secondary botones" onclick="borrar()">erase</button>
+                        <button class="border botones_chicos rounded-0 btn btn-light botones"
+                            onclick="despejar();resaltar(0)">C</button>
+                        <button class="border botones_chicos rounded-0 btn btn-light botones"
+                            onclick="operacion(1);resaltar(1)">/</button>
+                        <button class="border botones_chicos rounded-0 btn btn-light botones"
+                            onclick="operacion(2);resaltar(2)">x</button>
+                        <button class="border botones_chicos rounded-0 btn btn-light botones"
+                            onclick="borrar();resaltar(3)">erase</button>
                     </div>
                     <div class="d-flex">
-                        <button class="botones_chicos btn btn-secondary botones" onclick="escribir(7)">7</button>
-                        <button class="botones_chicos btn btn-secondary botones" onclick="escribir(8)">8</button>
-                        <button class="botones_chicos btn btn-secondary botones" onclick="escribir(9)">9</button>
-                        <button class="botones_chicos btn btn-secondary botones" onclick="operacion(3)">-</button>
+                        <button class="border botones_chicos rounded-0 btn btn-light botones"
+                            onclick="escribir(7);resaltar(4)">7</button>
+                        <button class="border botones_chicos rounded-0 btn btn-light botones"
+                            onclick="escribir(8);resaltar(5)">8</button>
+                        <button class="border botones_chicos rounded-0 btn btn-light botones"
+                            onclick="escribir(9);resaltar(6)">9</button>
+                        <button class="border botones_chicos rounded-0 btn btn-light botones"
+                            onclick="operacion(3);resaltar(7)">-</button>
                     </div>
                     <div class="d-flex">
-                        <button class="botones_chicos btn btn-secondary botones" onclick="escribir(4)">4</button>
-                        <button class="botones_chicos btn btn-secondary botones" onclick="escribir(5)">5</button>
-                        <button class="botones_chicos btn btn-secondary botones" onclick="escribir(6)">6</button>
-                        <button class="botones_chicos btn btn-secondary botones" onclick="operacion(4)">+</button>
+                        <button class="border botones_chicos rounded-0 btn btn-light botones"
+                            onclick="escribir(4);resaltar(8)">4</button>
+                        <button class="border botones_chicos rounded-0 btn btn-light botones"
+                            onclick="escribir(5);resaltar(9)">5</button>
+                        <button class="border botones_chicos rounded-0 btn btn-light botones"
+                            onclick="escribir(6);resaltar(10)">6</button>
+                        <button class="border botones_chicos rounded-0 btn btn-light botones"
+                            onclick="operacion(4);resaltar(11)">+</button>
                     </div>
                     <div class="d-flex">
                         <div>
                             <div class="ancho_3botones d-flex">
-                                <button class="botones_chicos btn btn-secondary botones"
-                                    onclick="escribir(1)">1</button>
-                                <button class="botones_chicos btn btn-secondary botones"
-                                    onclick="escribir(2)">2</button>
-                                <button class="botones_chicos btn btn-secondary botones"
-                                    onclick="escribir(3)">3</button>
+                                <button class="border botones_chicos rounded-0 btn btn-light botones"
+                                    onclick="escribir(1);resaltar(12)">1</button>
+                                <button class="border botones_chicos rounded-0 btn btn-light botones"
+                                    onclick="escribir(2);resaltar(13)">2</button>
+                                <button class="border botones_chicos rounded-0 btn btn-light botones"
+                                    onclick="escribir(3);resaltar(14)">3</button>
                             </div>
                             <div class="ancho_3botones d-flex">
-                                <button class="botones_chicos btn btn-secondary botones"
-                                    onclick="operacion(5)">%</button>
-                                <button class="botones_chicos btn btn-secondary botones"
-                                    onclick="escribir(0)">0</button>
-                                <button class="botones_chicos btn btn-secondary botones"
-                                    onclick="escribir('.0')">,</button>
+                                <button class="border botones_chicos rounded-0 btn btn-light botones"
+                                    onclick="operacion(5);resaltar(15)">%</button>
+                                <button class="border botones_chicos rounded-0 btn btn-light botones"
+                                    onclick="escribir(0);resaltar(16)">0</button>
+                                <button class="border botones_chicos rounded-0 btn btn-light botones"
+                                    onclick="escribir('.0');;resaltar(17)">,</button>
                             </div>
                         </div>
                         <div class="d-flex">
-                            <button class="boton_grande btn btn-primary botones boton_igual"
-                                onclick="igual()">=</button>
+                            <button class="rounded-0 boton_grande btn btn-primary botones boton_igual"
+                                onclick="igual();resaltarMas(18)">=</button>
                         </div>
                     </div>
                 </div>

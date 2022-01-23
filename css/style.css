@@ -18,17 +18,20 @@
   width: 225px;
 }
 
-.ancho_1boton {
-    width: 75px;
-    height: 112px;
-}
-
 .botones_chicos {
     width: 75px;
-    height: 56px;
+    height: 75px;
 }
 
 .boton_grande {
     width: 75px;
-    height: 112px;
+    height: 150px;
+}
+
+.marcar {
+    z-index: 2;
+}
+
+.desmarcar {
+    z-index: 1;
 }
