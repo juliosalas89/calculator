@@ -1,12 +1,8 @@
 let botones = document.getElementsByTagName("button");
-let valor1 = 0;
 let indicador = "";
 let pantalla = document.getElementById("input");
-let anterior = true
-let valores = [];
-let resultados = [];
-let j = 0;
-let previo = "";
+let anterior = true;
+let habilitador = true;
 
 function escribir(input) {
     let i = pantalla.value.length;
@@ -25,131 +21,89 @@ function escribir(input) {
 }
 
 function borrar() {
-    pantalla.value = parseFloat(pantalla.value.substr(0, (pantalla.value.length - 1)));
+    if (pantalla.value.length > 1) {
+        pantalla.value = parseFloat(pantalla.value.substr(0, (pantalla.value.length - 1)));
+    } else if (pantalla.value.length == 1) {
+        pantalla.value = "";
+    }
 }
 
-// function operacion(opcion) {
-//     anterior = true;
-//     switch (opcion) {
-//         case 1:
-//             valor1 = parseFloat(pantalla.value);
-//             indicador = "dividir";
-//             pantalla.value = "";
-//             break;
-//         case 2:
-//             valor1 = parseFloat(pantalla.value);
-//             indicador = "multiplicar";
-//             pantalla.value = "";
-//             break;
-//         case 3:
-//             valor1 = parseFloat(pantalla.value);
-//             indicador = "restar";
-//             pantalla.value = "";
-//             break;
-//         case 4:
-//             valor1 = parseFloat(pantalla.value);
-//             indicador = "sumar";
-//             pantalla.value = "";
-//             break;
-//         case 5:
-//             valor1 = parseFloat(pantalla.value);
-//             indicador = "porcentaje";
-//             pantalla.value = "";
-//             break;
-//         default:
-//     }
-// }
-
-// function igual() {
-//     anterior = true;
-//     let valor2 = parseFloat(pantalla.value);
-//     if (indicador == "dividir") {
-//         let resultado = parseFloat(valor1 / valor2);
-//         pantalla.value = resultado;
-//     }
-//     if (indicador == "sumar") {
-//         let resultado = parseFloat(valor1 + valor2);
-//         pantalla.value = resultado;
-//     }
-//     if (indicador == "restar") {
-//         let resultado = parseFloat(valor1 - valor2);
-//         pantalla.value = resultado;
-//     }
-//     if (indicador == "multiplicar") {
-//         let resultado = parseFloat(valor1 * valor2);
-//         pantalla.value = resultado;
-//     }
-//     if (indicador == "porcentaje") {
-//         let resultado = parseFloat(valor1 / 100 * valor2);
-//         pantalla.value = resultado;
-//     }
-// }
+let valor = 0;
+let resultado = 0;
+let j = false;
+let previo = "";
 
 function operacion(opcion) {
-    anterior = true;
-    if (j > 0) {
-        if (previo == "dividir") {
-            resultados[j] = parseFloat(parseFloat(resultados[j - 1]) / parseFloat(valores[j]));
-        } else if (previo == "multiplicar") {
-            resultados[j] = parseFloat(parseFloat(resultados[j - 1]) * parseFloat(valores[j]));
-        } else if (previo == "restar") {
-            resultados[j] = parseFloat(parseFloat(resultados[j - 1]) - parseFloat(valores[j]));
-        } else if (previo == "sumar") {
-            resultados[j] = parseFloat(parseFloat(resultados[j - 1]) + parseFloat(valores[j]));
-        } else if (previo == "porcentaje") {
-            resultados[j] = parseFloat(parseFloat(resultados[j - 1]) / 100 * parseFloat(valores[j]));
-        }
-        console.log(resultados);
-    } else {
-        resultados[j] = parseFloat(pantalla.value);
-    }
+    if (pantalla.value != "") {
+        anterior = true;
+        valor = parseFloat(pantalla.value);
+        habilitador = true;
 
+        if (j) {
+            if (previo == "dividir") {
+                resultado = parseFloat(resultado / valor);
+            } else if (previo == "multiplicar") {
+                resultado = parseFloat(resultado * valor);
+            } else if (previo == "restar") {
+                resultado = parseFloat(resultado - valor);
+            } else if (previo == "sumar") {
+                resultado = parseFloat(resultado + valor);
+            } else if (previo == "porcentaje") {
+                resultado = parseFloat(resultado / 100 * valor);
+            }
+        } else {
+            resultado = parseFloat(pantalla.value);
+        }
+    }
     switch (opcion) {
         case 1:
-            valores[j] = parseFloat(pantalla.value);
             previo = "dividir";
             pantalla.value = "";
             break;
         case 2:
-            valores[j] = parseFloat(pantalla.value);
             previo = "multiplicar";
             pantalla.value = "";
             break;
         case 3:
-            valores[j] = parseFloat(pantalla.value);
             previo = "restar";
             pantalla.value = "";
             break;
         case 4:
-            valores[j] = parseFloat(pantalla.value);
             previo = "sumar";
             pantalla.value = "";
             break;
         case 5:
-            valores[j] = parseFloat(pantalla.value);
             previo = "porcentaje";
             pantalla.value = "";
             break;
         default:
     }
-    j++;
+    j = true;
 }
 
 function igual() {
-    anterior = true;
-    if (previo == "dividir") {
-        resultados[j] = (resultados[j - 1] / valores[j]);
-    } else if (previo == "multiplicar") {
-        resultados[j] = (resultados[j - 1] * valores[j]);
-    } else if (previo == "restar") {
-        resultados[j] = (resultados[j - 1] - valores[j]);
-    } else if (previo == "sumar") {
-        resultados[j] = (resultados[j - 1] + valores[j]);
-    } else if (previo == "porcentaje") {
-        resultados[j] = (resultados[j - 1] / 100 * valores[j]);
+    if (habilitador) {
+        valor = parseFloat(pantalla.value);
+        console.log(resultado)
+        console.log(valor)
+        anterior = true;
+        if (previo == "dividir") {
+            resultado = parseFloat(resultado / valor);
+        } else if (previo == "multiplicar") {
+            resultado = parseFloat(resultado * valor);
+        } else if (previo == "restar") {
+            resultado = parseFloat(resultado - valor);
+        } else if (previo == "sumar") {
+            resultado = parseFloat(resultado + valor);
+        } else if (previo == "porcentaje") {
+            resultado = parseFloat(resultado / 100 * valor);
+        }
+        pantalla.value = parseFloat(resultado);
+        habilitador = false;
+        j = false;
+    } else {
+        pantalla.value = parseFloat(resultado);
     }
-    pantalla.value = parseFloat(resultados[j]);
-    console.log(resultados);
 }
 
 function resaltar(input) {
@@ -170,8 +124,8 @@ function resaltarMas() {
 function despejar() {
     pantalla.value = "";
     previo = "";
-    valor1 = 0;
-    v = 0;
-    valores = [];
-    resultados = [];
+    j = false;
+    valor = 0;
+    resultado = 0;
+    habilitador = true;
 }
