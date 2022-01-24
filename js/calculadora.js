@@ -1,57 +1,60 @@
 let botones = document.getElementsByTagName("button");
 let valor1 = 0;
 let indicador = "";
-let screen = document.getElementById("input");
+let pantalla = document.getElementById("input");
 let anterior = true
+let valores = [];
+let resultados = [];
+let j = 0;
+let previo = "";
 
 function escribir(input) {
-    let i = screen.value.length;
-    let coma = screen.value.substr(screen.value.length - 2, 2);
-    console.log(coma);
+    let i = pantalla.value.length;
+    let coma = pantalla.value.substr(pantalla.value.length - 2, 2);
     if (coma == ".0") {
         if (anterior) {
-            screen.value = screen.value.substr(0, screen.value.length - 1) + input;
+            pantalla.value = (pantalla.value.substr(0, pantalla.value.length - 1)) + (input);
             anterior = false;
         } else {
-            screen.value = screen.value + input;
+            pantalla.value = (pantalla.value) + (input);
             anterior = true;
         }
     } else {
-        screen.value = screen.value + input;
+        pantalla.value = (pantalla.value) + (input);
     }
 }
 
 function borrar() {
-    screen.value = parseFloat(screen.value.substr(0, (screen.value.length - 1)));
+    pantalla.value = parseFloat(pantalla.value.substr(0, (pantalla.value.length - 1)));
 }
 
 // function operacion(opcion) {
 //     anterior = true;
 //     switch (opcion) {
 //         case 1:
-//             valor1 = parseFloat(screen.value);
+//             valor1 = parseFloat(pantalla.value);
 //             indicador = "dividir";
-//             screen.value = "";
+//             pantalla.value = "";
 //             break;
 //         case 2:
-//             valor1 = parseFloat(screen.value);
+//             valor1 = parseFloat(pantalla.value);
 //             indicador = "multiplicar";
-//             screen.value = "";
+//             pantalla.value = "";
 //             break;
 //         case 3:
-//             valor1 = parseFloat(screen.value);
+//             valor1 = parseFloat(pantalla.value);
 //             indicador = "restar";
-//             screen.value = "";
+//             pantalla.value = "";
 //             break;
 //         case 4:
-//             valor1 = parseFloat(screen.value);
+//             valor1 = parseFloat(pantalla.value);
 //             indicador = "sumar";
-//             screen.value = "";
+//             pantalla.value = "";
 //             break;
 //         case 5:
-//             valor1 = parseFloat(screen.value);
+//             valor1 = parseFloat(pantalla.value);
 //             indicador = "porcentaje";
-//             screen.value = "";
+//             pantalla.value = "";
 //             break;
 //         default:
 //     }
@@ -59,71 +62,94 @@ function borrar() {
 
 // function igual() {
 //     anterior = true;
-//     let valor2 = parseFloat(screen.value);
+//     let valor2 = parseFloat(pantalla.value);
 //     if (indicador == "dividir") {
 //         let resultado = parseFloat(valor1 / valor2);
-//         screen.value = resultado;
+//         pantalla.value = resultado;
 //     }
 //     if (indicador == "sumar") {
 //         let resultado = parseFloat(valor1 + valor2);
-//         screen.value = resultado;
+//         pantalla.value = resultado;
 //     }
 //     if (indicador == "restar") {
 //         let resultado = parseFloat(valor1 - valor2);
-//         screen.value = resultado;
+//         pantalla.value = resultado;
 //     }
 //     if (indicador == "multiplicar") {
 //         let resultado = parseFloat(valor1 * valor2);
-//         screen.value = resultado;
+//         pantalla.value = resultado;
 //     }
 //     if (indicador == "porcentaje") {
 //         let resultado = parseFloat(valor1 / 100 * valor2);
-//         screen.value = resultado;
+//         pantalla.value = resultado;
 //     }
 // }
 
-function despejar() {
-        screen.value = "";
-        indicador = "";
-        valor1 = 0;
-}
-
-let valores = [];
-let v = 0;
-
 function operacion(opcion) {
     anterior = true;
-    console.log("anda")
+    if (j > 0) {
+        if (previo == "dividir") {
+            resultados[j] = parseFloat(parseFloat(resultados[j - 1]) / parseFloat(valores[j]));
+        } else if (previo == "multiplicar") {
+            resultados[j] = parseFloat(parseFloat(resultados[j - 1]) * parseFloat(valores[j]));
+        } else if (previo == "restar") {
+            resultados[j] = parseFloat(parseFloat(resultados[j - 1]) - parseFloat(valores[j]));
+        } else if (previo == "sumar") {
+            resultados[j] = parseFloat(parseFloat(resultados[j - 1]) + parseFloat(valores[j]));
+        } else if (previo == "porcentaje") {
+            resultados[j] = parseFloat(parseFloat(resultados[j - 1]) / 100 * parseFloat(valores[j]));
+        }
+        console.log(resultados);
+    } else {
+        resultados[j] = parseFloat(pantalla.value);
+    }
+
     switch (opcion) {
         case 1:
-            valores[v] = parseFloat(screen.value);
-            indicador = "dividir";
-            screen.value = "";
+            valores[j] = parseFloat(pantalla.value);
+            previo = "dividir";
+            pantalla.value = "";
             break;
         case 2:
-            valores[v] = parseFloat(screen.value);
-            indicador = "multiplicar";
-            screen.value = "";
+            valores[j] = parseFloat(pantalla.value);
+            previo = "multiplicar";
+            pantalla.value = "";
             break;
         case 3:
-            valores[v] = parseFloat(screen.value);
-            indicador = "restar";
-            screen.value = "";
+            valores[j] = parseFloat(pantalla.value);
+            previo = "restar";
+            pantalla.value = "";
             break;
         case 4:
-            valores[v] = parseFloat(screen.value);
-            indicador = "sumar";
-            screen.value = "";
+            valores[j] = parseFloat(pantalla.value);
+            previo = "sumar";
+            pantalla.value = "";
             break;
         case 5:
-            valores[v] = parseFloat(screen.value);
-            indicador = "porcentaje";
-            screen.value = "";
+            valores[j] = parseFloat(pantalla.value);
+            previo = "porcentaje";
+            pantalla.value = "";
             break;
         default:
     }
-    v++;
-    console.log(valores);
+    j++;
+}
+
+function igual() {
+    anterior = true;
+    if (previo == "dividir") {
+        resultados[j] = (resultados[j - 1] / valores[j]);
+    } else if (previo == "multiplicar") {
+        resultados[j] = (resultados[j - 1] * valores[j]);
+    } else if (previo == "restar") {
+        resultados[j] = (resultados[j - 1] - valores[j]);
+    } else if (previo == "sumar") {
+        resultados[j] = (resultados[j - 1] + valores[j]);
+    } else if (previo == "porcentaje") {
+        resultados[j] = (resultados[j - 1] / 100 * valores[j]);
+    }
+    pantalla.value = parseFloat(resultados[j]);
+    console.log(resultados);
 }
 
 function resaltar(input) {
@@ -139,4 +165,13 @@ function resaltarMas() {
         botones[i].className = "border botones_chicos rounded-0 btn btn-light botones desmarcar"
     }
     botones[18].className = "rounded-0 boton_grande btn btn-primary botones boton_igual marcar"
+}
+
+function despejar() {
+    pantalla.value = "";
+    previo = "";
+    valor1 = 0;
+    v = 0;
+    valores = [];
+    resultados = [];
 }
