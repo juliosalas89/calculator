@@ -1,6 +1,7 @@
 let botones = document.getElementsByTagName("button");
 let indicador = "";
 let pantalla = document.getElementById("input");
+let pantallaDos = document.getElementById("input2");
 let anterior = true;
 let habilitador = true;
 
@@ -38,10 +39,9 @@ let j = false;
 let previo = "";
 
 function operacion(opcion) {
-    if (pantalla.value != "") {
+    if (pantalla.value != "" || pantallaDos.value != "") {
         anterior = true;
         valor = parseFloat(pantalla.value);
-        habilitador = true;
 
         if (j) {
             if (previo == "dividir") {
@@ -55,9 +55,10 @@ function operacion(opcion) {
             } else if (previo == "porcentaje") {
                 resultado = parseFloat(resultado / 100 * valor);
             }
-        } else {
+        } else if(habilitador) {
             resultado = parseFloat(pantalla.value);
         }
+        habilitador = true;
     }
     switch (opcion) {
         case 1:
@@ -83,6 +84,7 @@ function operacion(opcion) {
         default:
     }
     j = true;
+    pantallaDos.value = resultado;
 }
 
 function igual() {
@@ -102,27 +104,59 @@ function igual() {
         } else if (previo == "porcentaje") {
             resultado = parseFloat(resultado / 100 * valor);
         }
-        pantalla.value = parseFloat(resultado);
+        // pantalla.value = parseFloat(resultado);
+        pantalla.value = "";
+        pantallaDos.value = resultado;
         habilitador = false;
         j = false;
     } else {
-        pantalla.value = parseFloat(resultado);
+        // pantalla.value = parseFloat(resultado);
+        pantallaDos.value = resultado;
     }
 }
 
 function resaltar(input) {
-    for (let i = 0; i < 18; i++) {
-        botones[i].className = "border botones_chicos rounded-0 btn btn-light botones desmarcar"
+    for (let i = 4; i < 18; i++) {
+        if (i != 7 && i != 11) {
+            botones[i].className = "border botones_chicos rounded-0 btn btn-light botones desmarcar"
+        }
     }
+    for (let i = 0; i < 4; i++) {
+            botones[i].className = "border botones_chicos rounded-0 btn botones_especiales botones desmarcar"
+    }
+    botones[7].className = "border botones_chicos rounded-0 btn botones_especiales botones desmarcar"
+    botones[11].className = "border botones_chicos rounded-0 btn botones_especiales botones desmarcar"
     botones[18].className = "rounded-0 boton_grande btn btn-primary botones boton_igual desmarcar"
     botones[input].className = "border botones_chicos rounded-0 btn btn-light botones marcar"
 }
 
 function resaltarMas() {
-    for (let i = 0; i < 18; i++) {
-        botones[i].className = "border botones_chicos rounded-0 btn btn-light botones desmarcar"
+    for (let i = 4; i < 18; i++) {
+        if (i != 7 && i != 11) {
+            botones[i].className = "border botones_chicos rounded-0 btn btn-light botones desmarcar"
+        }
     }
+    for (let i = 0; i < 4; i++) {
+            botones[i].className = "border botones_chicos rounded-0 btn botones_especiales botones desmarcar"
+    }
+    botones[7].className = "border botones_chicos rounded-0 btn botones_especiales botones desmarcar"
+    botones[11].className = "border botones_chicos rounded-0 btn botones_especiales botones desmarcar"
     botones[18].className = "rounded-0 boton_grande btn btn-primary botones boton_igual marcar"
+}
+
+function resaltarEspeciales(input) {
+    for (let i = 4; i < 18; i++) {
+        if (i != 7 && i != 11) {
+            botones[i].className = "border botones_chicos rounded-0 btn btn-light botones desmarcar"
+        }
+    }
+    for (let i = 0; i < 4; i++) {
+            botones[i].className = "border botones_chicos rounded-0 btn botones_especiales botones desmarcar"
+    }
+    botones[7].className = "border botones_chicos rounded-0 btn botones_especiales botones desmarcar"
+    botones[11].className = "border botones_chicos rounded-0 btn botones_especiales botones desmarcar"
+    botones[18].className = "rounded-0 boton_grande btn btn-primary botones boton_igual desmarcar"
+    botones[input].className = "border botones_chicos rounded-0 btn botones_especiales botones marcar"
 }
 
 function despejar() {
@@ -132,4 +166,7 @@ function despejar() {
     valor = 0;
     resultado = 0;
     habilitador = true;
+    document.getElementById("input2").value = "";
 }
+
+//border botones_chicos rounded-0 btn botones_especiales botones

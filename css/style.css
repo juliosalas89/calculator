@@ -41,6 +41,16 @@
     font-family: 'Electrolize', sans-serif;
 }
 
-.alto_input_dos {
+.input_uno {
+    height: 45px;
+    font-size: large;
+}
+
+.input_dos {
     height: 60px;
+    font-size: x-large;
+}
+
+.botones_especiales {
+    background-color: rgb(209, 209, 209);
 }
