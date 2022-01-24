@@ -5,6 +5,9 @@ let anterior = true;
 let habilitador = true;
 
 function escribir(input) {
+    if(!habilitador) {
+        despejar();
+    }
     let i = pantalla.value.length;
     let coma = pantalla.value.substr(pantalla.value.length - 2, 2);
     if (coma == ".0") {
@@ -18,6 +21,7 @@ function escribir(input) {
     } else {
         pantalla.value = (pantalla.value) + (input);
     }
+    console.log(anterior);
 }
 
 function borrar() {

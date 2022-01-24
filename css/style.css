@@ -15,7 +15,7 @@
 }
 
 .ancho_3botones {
-  width: 225px;
+    width: 225px;
 }
 
 .botones_chicos {
@@ -34,4 +34,13 @@
 
 .desmarcar {
     z-index: 1;
+}
+
+.fuente {
+    font-family: 'Chakra Petch', sans-serif;
+    font-family: 'Electrolize', sans-serif;
+}
+
+.alto_input_dos {
+    height: 60px;
 }
