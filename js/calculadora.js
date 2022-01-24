@@ -40,7 +40,6 @@ let j = false;
 let previo = "";
 
 function operacion(opcion) {
-    // if (pantalla.value != "" || pantallaDos.value != "") {
     if (habilitadorOperacion) {
         anterior = true;
         valor = parseFloat(pantalla.value);
@@ -91,7 +90,7 @@ function operacion(opcion) {
 }
 
 function igual() {
-    if (habilitadorIgual) {
+    if (habilitadorIgual && habilitadorOperacion) {
         valor = parseFloat(pantalla.value);
         anterior = true;
         if (previo == "dividir") {
@@ -110,8 +109,10 @@ function igual() {
         habilitadorIgual = false;
         j = false;
     } else {
-        pantallaDos.value = resultado;
+        pantallaDos.value = valor;
+        pantalla.value = "";
     }
+    previo = "";
 }
 
 function resaltar(input) {
