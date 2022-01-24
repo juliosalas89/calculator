@@ -3,10 +3,11 @@ let indicador = "";
 let pantalla = document.getElementById("input");
 let pantallaDos = document.getElementById("input2");
 let anterior = true;
-let habilitador = true;
+let habilitadorIgual = true;
+let habilitadorOperacion = true
 
 function escribir(input) {
-    if(!habilitador) {
+    if(!habilitadorIgual) {
         despejar();
     }
     let i = pantalla.value.length;
@@ -22,7 +23,7 @@ function escribir(input) {
     } else {
         pantalla.value = (pantalla.value) + (input);
     }
-    console.log(anterior);
+    habilitadorOperacion = true;
 }
 
 function borrar() {
@@ -39,7 +40,8 @@ let j = false;
 let previo = "";
 
 function operacion(opcion) {
-    if (pantalla.value != "" || pantallaDos.value != "") {
+    // if (pantalla.value != "" || pantallaDos.value != "") {
+    if (habilitadorOperacion) {
         anterior = true;
         valor = parseFloat(pantalla.value);
 
@@ -55,10 +57,11 @@ function operacion(opcion) {
             } else if (previo == "porcentaje") {
                 resultado = parseFloat(resultado / 100 * valor);
             }
-        } else if(habilitador) {
+        } else if(habilitadorIgual) {
             resultado = parseFloat(pantalla.value);
         }
-        habilitador = true;
+        habilitadorIgual = true;
+        habilitadorOperacion = false;
     }
     switch (opcion) {
         case 1:
@@ -88,10 +91,8 @@ function operacion(opcion) {
 }
 
 function igual() {
-    if (habilitador) {
+    if (habilitadorIgual) {
         valor = parseFloat(pantalla.value);
-        console.log(resultado)
-        console.log(valor)
         anterior = true;
         if (previo == "dividir") {
             resultado = parseFloat(resultado / valor);
@@ -104,13 +105,11 @@ function igual() {
         } else if (previo == "porcentaje") {
             resultado = parseFloat(resultado / 100 * valor);
         }
-        // pantalla.value = parseFloat(resultado);
         pantalla.value = "";
         pantallaDos.value = resultado;
-        habilitador = false;
+        habilitadorIgual = false;
         j = false;
     } else {
-        // pantalla.value = parseFloat(resultado);
         pantallaDos.value = resultado;
     }
 }
@@ -126,7 +125,6 @@ function resaltar(input) {
     }
     botones[7].className = "border botones_chicos rounded-0 btn botones_especiales botones desmarcar"
     botones[11].className = "border botones_chicos rounded-0 btn botones_especiales botones desmarcar"
-    botones[18].className = "rounded-0 boton_grande btn btn-primary botones boton_igual desmarcar"
     botones[input].className = "border botones_chicos rounded-0 btn btn-light botones marcar"
 }
 
@@ -165,8 +163,6 @@ function despejar() {
     j = false;
     valor = 0;
     resultado = 0;
-    habilitador = true;
+    habilitadorIgual = true;
     document.getElementById("input2").value = "";
 }
-
-//border botones_chicos rounded-0 btn botones_especiales botones
