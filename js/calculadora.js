@@ -108,9 +108,6 @@ function igual() {
         pantallaDos.value = resultado;
         habilitadorIgual = false;
         j = false;
-    } else {
-        pantallaDos.value = valor;
-        pantalla.value = "";
     }
     previo = "";
 }
